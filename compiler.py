@@ -1,13 +1,15 @@
 # RAM LIMITADA 512 números de 32 bits
 # evitar cosas raras
-# no existe entrada de usuario
+# no existe entrada de usuario, para cambiarlo simplemente cambias SIZE por el tamaño deseado
 
 import math
 
+SIZE = 512
+
 class Vars:
 	def __init__(self):
-		self.varnames = [""] * 512
-		self.is_free = [1] * 512
+		self.varnames = [""] * SIZE
+		self.is_free = [1] * SIZE
 	def new_var(self, name):
 		if name in self.varnames:
 			return -1
