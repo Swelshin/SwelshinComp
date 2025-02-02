@@ -50,7 +50,7 @@ global tager
 tager = TagManager()
 
 global nins
-nins = 0
+nins = 2
 
 def compile(file, out):
 	f = open(file, "r")
@@ -61,7 +61,7 @@ def compile(file, out):
 			translate(i)
 		except Exception:
 			pass
-	nins = 0
+	nins = 2
 	for i in range(len(lines)):
 		outlines.append(translate(lines[i]))
 	f.close()
@@ -74,6 +74,7 @@ def translate(texto): #estoy pensando en prohibir calculos sin usar variables, p
 	global nins
 	global memanager
 	global tager
+	ac = nins
 	at = False
 	txt = texto.split(" ")
 	ltxt = len(txt)
@@ -413,5 +414,7 @@ def translate(texto): #estoy pensando en prohibir calculos sin usar variables, p
 		nins += 1
 	if not at and texto != '\n':
 		raise Exception("LA ORDEN NO ES VALIDA")
+	for i in range(25-(nins-ac)):
+		nins += 1
+		outxt.append("MOV AX NUM 0\n")
 	return "".join(outxt)
-
